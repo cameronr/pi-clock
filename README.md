@@ -6,4 +6,5 @@ Hardware:
 - Raspberry pi 5 (because we had one)
 - [Waveshare 5in LCD](https://www.waveshare.com/5inch-dsi-lcd-c.htm)
 
-Software was inspired by [this video](https://www.youtube.com/watch?v=RCzWkUX-qtY) and [this codepen](https://codepen.io/junxblah/pen/JojazXx)
+Software was inspired by [this video](https://www.youtube.com/watch?v=RCzWkUX-qtY) and [this codepen](https://codepen.io/junxblah/pen/JojazXx).
+Kiosk setup from [PiMyLifeUp](https://pimylifeup.com/raspberry-pi-kiosk/)
