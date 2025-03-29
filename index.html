@@ -19,7 +19,7 @@
       }
 
       body {
-        background: #000000;
+        background: #202020;
         margin: 0; /* Reset default body margin */
       }
 
@@ -30,16 +30,15 @@
 
       #clock {
         font-family: "Share Tech Mono", monospace;
-        color: #ffffff;
         text-align: center;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        color: #8b0000;
-        text-shadow:
-          0 0 20px rgba(179, 0, 0, 0.8),
-          0 0 20px rgba(179, 0, 0, 0);
+        color: #0353a4;
+        /* text-shadow: */
+        /*   0 0 20px rgba(179, 0, 0, 0.8), */
+        /*   0 0 20px rgba(179, 0, 0, 0); */
       }
 
       .time {
@@ -167,7 +166,8 @@
             // Format temperature display with high/low from daily data
             const tempMin = Math.round(today.temperatureMin);
             const tempMax = Math.round(today.temperatureMax);
-            clock.weatherTemp = `${tempMin}°F / ${tempMax}°F`;
+            const temp = Math.round(current.temperature);
+            clock.weatherTemp = `${temp}°F H: ${tempMax}°F`;
 
             // Set weather icon based on icon string from API
             clock.weatherIcon = getPirateWeatherIcon(current.icon);
