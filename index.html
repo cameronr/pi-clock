@@ -123,6 +123,7 @@
         // Check if an hour has passed since last weather update
         var currentTime = cd.getTime();
         if (currentTime - clock.weatherLastUpdated >= 3600000) {
+          clock.weatherLastUpdated = new Date().getTime();
           // 3600000 ms = 1 hour
           fetchWeather();
         }
@@ -157,11 +158,18 @@
         fetch(
           `https://api.pirateweather.net/forecast/${apiKey}/${lat},${lon}?units=us&exclude=minutely,hourly,alerts`,
         )
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              return response.json().then((err) => {
+                throw new Error(
+                  err.message || `HTTP error! Status: ${response.status}`,
+                );
+              });
+            }
+
+            return response.json();
+          })
           .then((data) => {
-            // set the last updated time at the top so we don't hammer the server
-            // if there's an error
-            clock.weatherLastUpdated = new Date().getTime();
             // Get current weather data
             const current = data.currently;
             const today = data.daily.data[0];
