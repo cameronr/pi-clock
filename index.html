@@ -20,6 +20,13 @@
         font-style: normal;
       }
 
+      @font-face {
+        font-family: "Lily";
+        src: url("LilyScriptOne-Regular.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
       html,
       body {
         height: 100%;
@@ -37,6 +44,7 @@
 
       #clock {
         font-family: "Arbutus";
+        /* font-family: "Lily"; */
         text-align: center;
         position: absolute;
         left: 50%;
@@ -48,21 +56,37 @@
         /*   0 0 20px rgba(179, 0, 0, 0); */
       }
 
+      /* Use Flexbox to keep spans aligned and give digits a fixed width */
       .time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         letter-spacing: 0.05em;
-        font-size: 170px;
+        font-size: 175px;
         padding: 5px 0;
+      }
+
+      .digit {
+        display: inline-block;
+        width: 0.8em; /* This creates the "fixed" space for each number */
+        text-align: center;
+      }
+
+      .colon {
+        display: inline-block;
+        width: 0.7em;
+        text-align: center;
       }
 
       .date {
         letter-spacing: 0.1em;
-        font-size: 70px;
+        font-size: 75px;
         margin-bottom: 20px;
       }
 
       .weather {
         letter-spacing: 0.1em;
-        font-size: 70px;
+        font-size: 80px;
         padding: 20px 0 0;
         display: flex;
         justify-content: center;
@@ -86,7 +110,17 @@
   <body>
     <div id="clock">
       <p class="date" :style="{ color: timeColor }">{{ date }}</p>
-      <p class="time" :style="{ color: timeColor }">{{ time }}</p>
+
+      <p class="time" :style="{ color: timeColor }">
+        <span
+          v-for="(char, index) in time.split('')"
+          :key="index"
+          :class="char === ':' ? 'colon' : 'digit'"
+        >
+          {{ char }}
+        </span>
+      </p>
+
       <p class="weather" :style="{ color: timeColor }" v-if="weatherLoaded">
         <span class="weather-icon"><i :class="weatherIcon"></i></span>
         <span>{{ weatherTemp }}</span>
