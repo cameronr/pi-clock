@@ -10,6 +10,6 @@ sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' /home/"$USER"/.config/chr
 
 # load API key
 # shellcheck source=./env
-. "/home/$USER/dev/kep-clock/env"
+. "/home/$USER/dev/clock/env"
 
-/usr/bin/chromium-browser --noerrdialogs --disable-infobars --kiosk "file:///home/$USER/dev/kep-clock/index.html?apiKey=$PIRATE_WEATHER_API_KEY&lat=$LAT&long=$LONG"
+/usr/bin/chromium --noerrdialogs --disable-infobars --kiosk "file:///home/$USER/dev/clock/index.html?apiKey=$PIRATE_WEATHER_API_KEY&lat=$LAT&long=$LONG"
